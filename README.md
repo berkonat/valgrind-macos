@@ -1,4 +1,4 @@
-# Valgrind for macOS ![Linux Build](https://github.com/berkonat/valgrind-macos/workflows/linux/badge.svg) ![macOS Build](https://github.com/berkonat/valgrind-macos/workflows/macos/badge.svg)
+# Valgrind for macOS ![Linux Build](https://github.com/berkonat/valgrind-macos/workflows/Build/badge.svg) ![macOS Build](https://github.com/berkonat/valgrind-macos/workflows/macos/badge.svg)
 
 This is a modified version of `https://github.com/LouisBrunner/valgrind-macos` repository.
 
