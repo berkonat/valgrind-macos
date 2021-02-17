@@ -434,6 +434,11 @@ case "${host_os}" in
         AC_DEFINE([XCODE_10_15], 101500, [XCODE_VERS value for Xcode 10.15])
         AC_DEFINE([XCODE_11_0], 110000, [XCODE_VERS value for Xcode 11.0])
 
+        AC_DEFINE([XCODE_10_XX], 101400, [XCODE_SDK_VERS value for Xcode earlier than 10.15])
+        AC_DEFINE([XCODE_10_14_6], 101406, [XCODE_SDK_VERS value for Xcode 10.14.6])
+        AC_DEFINE([XCODE_10_15], 101500, [XCODE_SDK_VERS value for Xcode 10.15])
+        AC_DEFINE([XCODE_11_0], 110000, [XCODE_SDK_VERS value for Xcode 11.0])
+
         # Substitute the Xcode include path detected earlier
         AC_SUBST(XCODE_INC_DIR, [$xcodedir_inc])
 
@@ -537,8 +542,11 @@ case "${host_os}" in
 
         AC_MSG_CHECKING([for the Xcode SDK version])
         xcodeversion="legacy"
+        xcodesdkversion="legacy"
         if test "x$XCRUN" != "xno"; then
           xcodeversion=`xcrun --sdk macosx --show-sdk-version`
+          xcodeappversion=`system_profiler SPDeveloperToolsDataType | grep -e "Version" | awk '{print $2}'`
+          xcodesdkversion=`system_profiler SPDeveloperToolsDataType | grep -A1 -e "macOS" -e "OS X" | grep -v "OS" | awk -F":" '{gsub(/ /, "", $1); print $1}'`
         fi
         case "${xcodeversion}" in
 	        10.14.6)
@@ -559,6 +567,26 @@ case "${host_os}" in
             ;;
 	      esac
         AC_MSG_RESULT([${xcodeversion}])
+
+        case "${xcodesdkversion}" in
+	        10.14.6)
+            AC_DEFINE([XCODE_SDK_VERS], XCODE_10_14_6, [Xcode version])
+            ;;
+	        legacy|10.5*|10.6*|10.7*|10.8*|10.9*|10.10*|10.11*|10.12*|10.13*|10.14*)
+            AC_DEFINE([XCODE_SDK_VERS], XCODE_10_XX, [Xcode version])
+            ;;
+	        10.15*)
+            AC_DEFINE([XCODE_SDK_VERS], XCODE_10_15, [Xcode version])
+            ;;
+	        11.*)
+            AC_DEFINE([XCODE_SDK_VERS], XCODE_11_0, [Xcode version])
+            ;;
+	        *)
+            AC_MSG_RESULT([unsupported (${xcodesdkversion})])
+            AC_MSG_ERROR([Valgrind works on Darwin 10.x-19.x (Mac OS X 10.6-11 and macOS 10.12-15)])
+            ;;
+	      esac
+        AC_MSG_RESULT([${xcodesdkversion}])
 
         ;;
 

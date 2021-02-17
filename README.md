@@ -1,8 +1,17 @@
-# Valgrind for macOS ![Build](https://github.com/LouisBrunner/valgrind-macos/workflows/Build/badge.svg)
+# Valgrind for macOS ![Linux Build](https://github.com/berkonat/valgrind-macos/workflows/linux/badge.svg) ![macOS Build](https://github.com/berkonat/valgrind-macos/workflows/macos/badge.svg)
 
-This repository contains a version of Valgrind including a few patches to improve support for the macOS platform. It is maintained by [Louis Brunner](https://github.com/LouisBrunner).
+This is a modified version of `https://github.com/LouisBrunner/valgrind-macos` repository.
 
-## Status
+## Status of this version
+
+- Modified to be compiled on macos 10.14.6 with XCode 10.15 SDK
+- Modified to be compiled with MPI version >= 3.0
+
+## To check `valgrind-macos` repository
+
+The original `https://github.com/LouisBrunner/valgrind-macos` repository contains a version of Valgrind including a few patches to improve support for the macOS platform. It is maintained by [Louis Brunner](https://github.com/LouisBrunner).
+
+## Main Repo Status
 
 Valgrind now builds and works on every macOS version
 
