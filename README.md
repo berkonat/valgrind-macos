@@ -24,28 +24,3 @@ Note that some features are still in progress:
 It is currently tested on 10.14.6 and 10.15.4.
 
 Checkout the [`patches`](https://github.com/LouisBrunner/valgrind-macos/commits/patches) branch for a list of patches that can be directly applied to the upstream Valgrind.
-
-## Usage
-
-In case you already have Valgrind installed, you might need to `brew remove` it first.
-
-In order to use this version, first tap this repository:
-```sh
-brew tap berkonat/valgrind
-```
-
-Then, install `valgrind`:
-```sh
-brew install --HEAD berkonat/valgrind/valgrind
-```
-
-You can now use `valgrind` as normal.
-
-Note: in case of failures during the build, [make sure you have the latest Xcode/CLI tools installed](https://github.com/LouisBrunner/valgrind-macos/issues/6#issuecomment-667587385).
-
-### Update
-
-```sh
-brew upgrade --fetch-HEAD berkonat/valgrind/valgrind
-```
-
